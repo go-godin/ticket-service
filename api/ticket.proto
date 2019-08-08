@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package ticket.v1;
+
+service TicketService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+}
+
+message Ticket {
+    string id = 1;
+    string title = 2;
+    Status status = 3;
+}
+
+enum Status {
+   OPEN = 0;
+   IN_PROGRESS = 1;
+   CLOSED = 2;
+}
+
+message CreateRequest {
+    string title = 1;
+    string description = 2;
+}
+
+message CreateResponse {
+    Ticket ticket = 1;
+}
