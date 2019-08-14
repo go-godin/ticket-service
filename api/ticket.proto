@@ -4,6 +4,7 @@ package ticket.v1;
 
 service TicketService {
     rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Get(GetRequest) returns (GetResponse) {}
 }
 
 message Ticket {
@@ -24,5 +25,13 @@ message CreateRequest {
 }
 
 message CreateResponse {
+    Ticket ticket = 1;
+}
+
+message GetRequest {
+    string id = 1;
+}
+
+message GetResponse {
     Ticket ticket = 1;
 }

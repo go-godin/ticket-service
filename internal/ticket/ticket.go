@@ -42,6 +42,13 @@ func (t *Ticket) String() string {
 	return fmt.Sprintf(format, t.TicketID, t.Title, t.Status, t.Created.Format(time.RFC850), t.Updated.Format(time.RFC850))
 }
 
+func (t *Ticket) Validate() error {
+	if t.Title == "" {
+		return ErrEmptyTitle
+	}
+	return nil
+}
+
 func (t *Ticket) Delete() {
 	t.Updated = time.Now()
 	t.Deleted = time.Now()

@@ -1,7 +1,7 @@
 package endpoint
 
 import (
-	"ticket-service/internal/ticket"
+	"github.com/go-godin/ticket-service/internal/ticket"
 )
 
 type CreateRequest struct {
@@ -14,4 +14,13 @@ type CreateResponse struct {
 	Err    error
 }
 
+type GetRequest struct {
+	TicketID string
+}
+type GetResponse struct {
+	Ticket *ticket.Ticket
+	Err error
+}
+
 func (r CreateResponse) Failed() error { return r.Err }
+func (r GetResponse) Failed() error { return r.Err }

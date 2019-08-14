@@ -1,34 +1,49 @@
 package datastore
 
 import (
+	"context"
 	"fmt"
-	"ticket-service/internal/ticket"
 	"time"
+
+	"github.com/openzipkin/zipkin-go"
+
+	"github.com/go-godin/ticket-service/internal/ticket"
 )
 
 type InMemoryStore struct {
+	tracer  *zipkin.Tracer
 	tickets []*ticket.Ticket
 }
 
-func NewInMemoryStore() *InMemoryStore {
-	return &InMemoryStore{}
+func NewInMemoryStore(tracer *zipkin.Tracer) *InMemoryStore {
+	return &InMemoryStore{
+		tracer: tracer,
+	}
 }
 
-func (repo *InMemoryStore) Create(ticket *ticket.Ticket) error {
+func (repo *InMemoryStore) Create(ctx context.Context, ticket *ticket.Ticket) error {
+	span, ctx := repo.tracer.StartSpanFromContext(ctx, "Repository.Create")
+	defer span.Finish()
+
+	span.Tag("db.query", fmt.Sprintf("INSERT INTO tickets (title, description, status) VALUES (<string>, <string>, <string>);"))
+
 	repo.tickets = append(repo.tickets, ticket)
 	return nil
 }
 
-func (repo *InMemoryStore) FindByTicketID(ticketID string) (*ticket.Ticket, error) {
+func (repo *InMemoryStore) FindByTicketID(ctx context.Context, ticketID string) (*ticket.Ticket, error) {
+	span, ctx := repo.tracer.StartSpanFromContext(ctx, "Repository.FindByTicketID")
+	defer span.Finish()
+
 	for _, ticket := range repo.tickets {
 		if ticket.TicketID == ticketID {
 			if ticket.Deleted != (time.Time{}) {
-				 continue
+				continue
 			}
 			return ticket, nil
 		}
 	}
-	return nil, fmt.Errorf("ticket '%s' not found", ticketID)
+	return nil, ticket.ErrTicketNotFound
 }
 
 func (repo *InMemoryStore) Save(ticket *ticket.Ticket) error {

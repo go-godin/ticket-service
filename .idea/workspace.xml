@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="403ae072-d2a6-4864-84c3-3a980f38d924" name="Default Changelist" comment="" />
+    <list default="true" id="403ae072-d2a6-4864-84c3-3a980f38d924" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/client/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/endpoint/middleware.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/jaeger/jaeger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/transport/grpc/client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/zipkin/zipkin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/ticket.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/ticket.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/ticket.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/ticket.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/ticket/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/ticket/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/datastore/inmem.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/datastore/inmem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/endpoint/enpoints.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/endpoint/enpoints.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/endpoint/request_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/endpoint/request_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ticket/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ticket/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ticket/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ticket/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ticket/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ticket/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ticket/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ticket/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/ticket/ticket.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/ticket/ticket.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/transport/grpc/encode_decode.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/transport/grpc/encode_decode.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/transport/grpc/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/transport/grpc/server.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +41,9 @@
     </option>
   </component>
   <component name="GOROOT" path="/usr/local/go1.12.1.linux-amd64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
@@ -26,16 +54,20 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1P3XJeFzgLd0gldBoVaOI0xgY0v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -57,8 +89,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
     <proxy>direct</proxy>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../../../go/pkg/mod/github.com/go-kit/kit@v0.9.0/tracing/opentracing/endpoint.go</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -2,14 +2,13 @@ package ticket
 
 import (
 	"context"
+
 	"github.com/go-godin/log"
 )
 
 type Service interface {
 	Create(ctx context.Context, title, description string) (*Ticket, error)
-	GetByID(ctx context.Context, ticketID string) (*Ticket, error)
-	SetStatus(ctx context.Context, ticketID string, status Status) error
-	Delete(ctx context.Context, ticketID string) error
+	Get(ctx context.Context, ticketID string) (*Ticket, error)
 }
 
 func NewService(repository Repository, logger log.Log) Service {
@@ -17,30 +16,32 @@ func NewService(repository Repository, logger log.Log) Service {
 }
 
 type service struct {
-	repo Repository
+	repo   Repository
 	logger log.Logger
 }
 
 func (svc *service) Create(ctx context.Context, title, description string) (*Ticket, error) {
-	if title == "" {
-		return nil, ErrEmptyTitle
-	}
+	traceLog := svc.logger.WithTrace(ctx)
 
 	t := NewTicket(title, description)
-
-	if err := svc.repo.Create(t); err != nil {
+	if err := t.Validate(); err != nil {
 		return nil, err
 	}
+
+	if err := svc.repo.Create(ctx, t); err != nil {
+		return nil, err
+	}
+	traceLog.Info("ticket created", "ticket.id", t.TicketID, "ticket.title", t.Title)
 
 	return t, nil
 }
 
-func (svc *service) GetByID(ctx context.Context, ticketID string) (*Ticket, error) {
+func (svc *service) Get(ctx context.Context, ticketID string) (*Ticket, error) {
 	if ticketID == "" {
 		return nil, ErrEmptyTicketID
 	}
 
-	t, err := svc.repo.FindByTicketID(ticketID)
+	t, err := svc.repo.FindByTicketID(ctx, ticketID)
 	if err != nil {
 		return nil, err
 	}
@@ -53,9 +54,9 @@ func (svc *service) Delete(ctx context.Context, ticketID string) error {
 		return ErrEmptyTicketID
 	}
 
-	t, err := svc.GetByID(ctx, ticketID)
+	t, err := svc.Get(ctx, ticketID)
 	if err != nil {
-	    return err
+		return err
 	}
 
 	t.Delete()
@@ -72,9 +73,9 @@ func (svc *service) SetStatus(ctx context.Context, ticketID string, status Statu
 		return ErrEmptyTicketID
 	}
 
-	t, err := svc.GetByID(ctx, ticketID)
+	t, err := svc.Get(ctx, ticketID)
 	if err != nil {
-	    return err
+		return err
 	}
 
 	if err := t.SetStatus(status); err != nil {
